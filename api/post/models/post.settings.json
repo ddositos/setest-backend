@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "post"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "post_id": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "task": {
+      "model": "task"
+    }
+  }
+}
