@@ -1,19 +1,26 @@
-module.exports = ({ env }) => ({
-  defaultConnection: 'default',
-  connections: {
-    default: {
-      connector: 'bookshelf',
-      settings: {
-        client: 'postgres',
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        username: env('DATABASE_USERNAME', 'postgres'),
-        password: env('DATABASE_PASSWORD', 'root'),
-		ssl: env('DATABASE_SSL', false),
-        //schema: env('DATABASE_SCHEMA', 'public'), // Not Required
-      },
-      options: {},
-    },
-  },
-});
+
+module.exports = ({ env }) => {
+	const databaseCredentials = env('DATABASE_URL', null).match(/^(?<postgres>[a-z]+):\/\/(?<user>\w+):(?<password>\w+)@(?<host>[\w\-.]+):(?<port>\d+)\/(?<database>\w+)$/i).groups;
+	
+	return {
+		defaultConnection: 'default',
+		connections: {
+			default: {
+			connector: 'bookshelf',
+			settings: {
+				client: 'postgres',
+				host: databaseCredentials.host,
+				port: databaseCredentials.port,
+				database: databaseCredentials.database,
+				username: databaseCredentials.user,
+				password: databaseCredentials.password,
+				ssl: {
+					rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
+				},
+				schema: env('DATABASE_SCHEMA', 'public'), // Not Required
+			},
+			options: {},
+			},
+		},
+	};
+};
