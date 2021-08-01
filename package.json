@@ -8,12 +8,13 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-	"ngrok": "ngrok http 1337"
+    "ngrok": "ngrok http 1337"
   },
   "devDependencies": {},
   "dependencies": {
     "axios": "^0.21.1",
     "knex": "0.21.18",
+    "pg": "^8.7.1",
     "sqlite3": "5.0.0",
     "strapi": "3.6.5",
     "strapi-admin": "3.6.5",
