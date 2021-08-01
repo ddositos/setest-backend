@@ -1,7 +1,7 @@
 
 module.exports = ({ env }) => {
 	const databaseCredentials = env('DATABASE_URL', null).match(/^(?<postgres>[a-z]+):\/\/(?<user>\w+):(?<password>\w+)@(?<host>[\w\-.]+):(?<port>\d+)\/(?<database>\w+)$/i).groups;
-	
+	console.log(databaseCredentials)
 	return {
 		defaultConnection: 'default',
 		connections: {
