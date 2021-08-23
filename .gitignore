@@ -78,4 +78,3 @@ typings/
 
 build/
 ngrok.exe
-package-lock.json
