@@ -18,9 +18,7 @@ module.exports = {
 		let postId;
 		try {
 			const imageDataUrl = await strapi.services.task.getTaskImage(task);
-			const body = {
-				imageDataUrl,
-			}
+			const body = { imageDataUrl };
 			postId = await strapi.services.task.createWallPost(body);
 		}
 		catch(error) {
