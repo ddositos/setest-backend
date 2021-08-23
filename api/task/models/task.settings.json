@@ -23,7 +23,8 @@
       "type": "text"
     },
     "enabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "answer": {
       "type": "string",
