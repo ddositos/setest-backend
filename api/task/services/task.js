@@ -28,10 +28,10 @@ module.exports = {
 		return response.data.toString("base64");
 	},
 
-	async createWallPost(body){
+	async createWallPost(id){
 		let response;
 		try {
-			response = await axios.post(process.env.VK_BOT_URL + '/post', body);
+			response = await axios.post(process.env.VK_BOT_URL + `/post${id}`);
 		}
 		catch(error) {
 			throw new Error("VK bot server error. " + error.message);

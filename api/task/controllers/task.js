@@ -14,10 +14,10 @@ module.exports = {
 		const taskEntity = await strapi.services.task.findOne({ id });
 		if(taskEntity === null)
 			return null;
-		const task = sanitizeEntity(taskEntity, { model: strapi.models.task});
+			
 		let postId;
 		try {
-			const imageDataUrl = await strapi.services.task.getTaskImage(task);
+			const imageDataUrl = await strapi.services.task.getTaskImage(id);
 			const body = { imageDataUrl };
 			postId = await strapi.services.task.createWallPost(body);
 		}
