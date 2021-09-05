@@ -9,15 +9,10 @@ const { default: axios } = require("axios");
  */
 
 module.exports = {
-	async getTaskImage(task){
-		const { question, code, annotation } = task;
+	async getTaskImage(id){
 		let response;
 		try {
-			response = await axios.post(process.env.TASK_RENDERER_URL + '/task',{
-				question, 
-				code,
-				annotation,
-			},{
+			response = await axios.post(process.env.TASK_RENDERER_URL + `/task/${id}`,{},{
 				responseType: 'arraybuffer',
 			});
 		}
@@ -28,10 +23,10 @@ module.exports = {
 		return response.data.toString("base64");
 	},
 
-	async createWallPost(id){
+	async createWallPost(body){
 		let response;
 		try {
-			response = await axios.post(process.env.VK_BOT_URL + `/post${id}`);
+			response = await axios.post(process.env.VK_BOT_URL + '/post', body);
 		}
 		catch(error) {
 			throw new Error("VK bot server error. " + error.message);
