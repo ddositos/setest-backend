@@ -14,7 +14,7 @@ module.exports = {
 		const taskEntity = await strapi.services.task.findOne({ id });
 		if(taskEntity === null)
 			return null;
-			
+
 		let postId;
 		try {
 			const imageDataUrl = await strapi.services.task.getTaskImage(id);
@@ -27,7 +27,7 @@ module.exports = {
 
 		await strapi.services.post.create({
 			post_id: postId,
-			task: task.id
+			task: taskEntity.id
 		});
 		
 		return {
