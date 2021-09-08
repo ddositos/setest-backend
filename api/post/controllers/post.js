@@ -13,8 +13,8 @@ module.exports = {
 		if(post === null)
 			return null;
 		
-		// TODO: check case if task was deleted after the post was created.
-		// TODO: ( post.task === undefined|null )
+		if(post.task === undefined || post.task === null)
+			ctx.throw(410, "Task attached to post was deleted.");
 
 		return {
 			answer: post.task.answer,
