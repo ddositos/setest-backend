@@ -22,7 +22,7 @@
     "annotation": {
       "type": "text"
     },
-    "enabled": {
+    "posted": {
       "type": "boolean",
       "default": false
     },
