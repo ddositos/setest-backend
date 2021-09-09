@@ -29,7 +29,10 @@ module.exports = {
 		//if( await strapi.services.post.todayPosted() != 0)
 			//ctx.throw(400, "Post was already created today.");
 			
-		const task = await strapi.query("task").findOne({ posted : false });
+		const task = await strapi.query("task").findOne({ 
+			posted : false,
+			_sort: "id:ASC"
+		});
 		
 		if(task === null)
 			ctx.throw(404, "No tasks available");
