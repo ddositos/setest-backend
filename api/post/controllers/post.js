@@ -26,8 +26,8 @@ module.exports = {
 
 	async createDaily(ctx){
 		
-		if( await strapi.services.post.todayPosted() != 0)
-			ctx.throw(400, "Post was already created today.");
+		//if( await strapi.services.post.todayPosted() != 0)
+			//ctx.throw(400, "Post was already created today.");
 			
 		const task = await strapi.query("task").findOne({ posted : false });
 		
