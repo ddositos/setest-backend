@@ -39,6 +39,11 @@ module.exports = {
 
 		const postId = response.data.post_id;
 
+		await strapi.query("task").update(
+			{ id : taskId },
+			{ posted : true }
+		);
+
 		return await strapi.services.post.create({
 			post_id: postId,
 			task: taskId
