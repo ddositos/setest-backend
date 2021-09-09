@@ -15,23 +15,21 @@ module.exports = {
 		if(taskEntity === null)
 			return null;
 
-		let postId;
+		let postEntity;
 		try {
-			const imageDataUrl = await strapi.services.task.getTaskImage(id);
-			const body = { imageDataUrl };
-			postId = await strapi.services.task.createWallPost(body);
+			postEntity = await strapi.services.task.createWallPost( id );
 		}
 		catch(error) {
 			ctx.throw(502, error.message);
 		}
 
 		await strapi.services.post.create({
-			post_id: postId,
+			post_id: postEntity.id,
 			task: taskEntity.id
 		});
 		
 		return {
-			post_id: postId,
+			post_id: postEntity.id,
 		};
 	}
 

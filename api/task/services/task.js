@@ -23,7 +23,10 @@ module.exports = {
 		return response.data.toString("base64");
 	},
 
-	async createWallPost(body){
+	async createWallPost(taskId){
+		const imageDataUrl = await strapi.services.task.getTaskImage(taskId);
+		const body = { imageDataUrl };
+
 		let response;
 		try {
 			response = await axios.post(process.env.VK_BOT_URL + '/post', body);
@@ -34,6 +37,11 @@ module.exports = {
 		if(!response.data || !response.data.post_id)
 			throw new Error("VK bot server didn't return post_id.");
 
-		return response.data.post_id;
-	},
+		const postId = response.data.post_id;
+
+		return await strapi.services.post.create({
+			post_id: postId,
+			task: taskId
+		});
+	}
 };

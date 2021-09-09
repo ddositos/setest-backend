@@ -16,6 +16,14 @@
         "policies": []
       }
     },
+	{
+		"method": "POST",
+		"path": "/posts/createDaily",
+		"handler": "post.createDaily",
+		"config": {
+		  "policies": []
+		}
+	},
     {
       "method": "GET",
       "path": "/posts/:id",
