@@ -10,14 +10,14 @@ const { sanitizeEntity } = require('strapi-utils');
 module.exports = {
 
 	async post(ctx){
-		const { id } = ctx.params;
-		const taskEntity = await strapi.services.task.findOne({ id });
+		const { id: taskId } = ctx.params;
+		const taskEntity = await strapi.services.task.findOne({ id: taskId });
 		if(taskEntity === null)
 			return null;
 
 		let postEntity;
 		try {
-			postEntity = await strapi.services.task.createWallPost( id );
+			postEntity = await strapi.services.task.createWallPost( taskId );
 		}
 		catch(error) {
 			ctx.throw(502, error.message);
