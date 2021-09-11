@@ -13,14 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "question": {
-      "type": "text",
+      "type": "richtext",
       "required": true
     },
     "code": {
       "type": "text"
     },
     "annotation": {
-      "type": "text"
+      "type": "richtext"
     },
     "posted": {
       "type": "boolean",
