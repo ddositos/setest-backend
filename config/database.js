@@ -1,6 +1,6 @@
 
 module.exports = ({ env }) => {
-	const databaseCredentials = env('DATABASE_URL', null).match(/^(?<postgres>[a-z]+):\/\/(?<user>\w+):(?<password>\w+)@(?<host>[\w\-.]+):(?<port>\d+)\/(?<database>\w+)$/i).groups;
+	const databaseCredentials = env('HEROKU_POSTGRESQL_ROSE_URL', null).match(/^(?<postgres>[a-z]+):\/\/(?<user>\w+):(?<password>\w+)@(?<host>[\w\-.]+):(?<port>\d+)\/(?<database>\w+)$/i).groups;
 	
 	return {
 		defaultConnection: 'default',
